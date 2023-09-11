@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/cjsigmon/tact/issues"
   },
-  "homepage": "https://github.com/cjsigmon/tact#readme"
+  "homepage": "https://github.com/cjsigmon/tact#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "socket.io": "^4.7.2"
+  }
 }
