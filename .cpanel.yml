@@ -1,0 +1,7 @@
+---
+name: My Node.js Application
+version: 1.0
+app_type: node
+user: myusername
+documentroot: public
+entry: server.js
