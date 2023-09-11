@@ -1,0 +1,19 @@
+{
+  "name": "tact",
+  "version": "1.0.0",
+  "description": "'online tic tac toe game'",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cjsigmon/tact.git"
+  },
+  "author": "cjsigmon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cjsigmon/tact/issues"
+  },
+  "homepage": "https://github.com/cjsigmon/tact#readme"
+}
