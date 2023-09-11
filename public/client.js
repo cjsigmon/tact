@@ -4,38 +4,54 @@ const form = document.getElementById('form');
 const input = document.getElementById('input');
 const messages = document.getElementById('messages');
 var players = document.getElementById('players');
+var turn = document.getElementById('turn');
+
 let playerNum = 0;
 let turnNum = 1;
     // Get the button element
     const button = document.getElementById('toggleButton');
-var squares = document.getElementsByClassName('sq');
+var board = document.getElementById('board');
+const squares = Array.from(board.getElementsByTagName("li"));
+
+let sqArr = ['Z', 'Z', 'Z', 'Z', 'Z', 'Z', 'Z', 'Z', 'Z'];
 
 socket.on('newPlayer', (p) => {
   playerNum = p;
+  players.textContent = playerNum;
 });
 
   function sqClick(sq) {
     if (turnNum % 2 === 0 && playerNum === 2 && sq.textContent != undefined) {
-        sq.textContent = 'O';
+      console.log("index " + squares.indexOf(sq.parentNode));
+      sqArr[ squares.indexOf(sq.parentNode)] = 'O';
+
         turnNum++;
     }
     else if (turnNum % 2 != 0 && playerNum === 1  && sq.textContent != undefined) {
-      sq.textContent = 'X';
+      console.log("index " + squares.indexOf(sq.parentNode));
+      sqArr[ squares.indexOf(sq.parentNode)] = 'X';
       turnNum++;
     }
-    socket.emit('squareCl', sq);
+    socket.emit('squareCl', sqArr);
     socket.emit('newTurn', turnNum);
   }
 
   socket.on('newTurn', (tn) => {
     turnNum = tn;
+    turn.textContent = 'TURN: ' + turnNum;
   })
 
-  for(square in squares) {
-    if (square.value != undefined) {
-      console.log(square.value)
+
+  socket.on('updateSqs', (sqs) => {
+    sqArr = sqs;
+    for(i=0; i < sqArr.length; i++) {
+      if(sqArr[i] != 'Z') {
+        squares[i].lastElementChild.textContent = sqArr[i];
+      }
     }
-  }
+  })
+
+
 
     // Listen for button clicks
     button.addEventListener('click', () => {

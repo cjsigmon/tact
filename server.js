@@ -19,17 +19,15 @@ io.on('connection', (socket) => {
   }
 
     // Listen for button clicks
-    socket.on('squareCl', (sq) => {
-      console.log(sq);
+    socket.on('squareCl', (sqArr) => {
+      console.log(sqArr);
   
       // Broadcast the new color to all connected clients
-      // io.emit('updateColor', buttonColor);
+      io.emit('updateSqs', sqArr);
     });
 
-    socket.on('newTurn', (turnNum) => {
-      console.log(turnNum)
-  
-      io.emit('newTurn', turnNum)
+    socket.on('newTurn', (turnNum) => { 
+      io.emit('newTurn', turnNum);
     });
 
 
