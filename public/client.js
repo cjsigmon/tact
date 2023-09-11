@@ -42,18 +42,15 @@ socket.on('gameFull', () => {
       sqIndex = sqIndex - 3;
       rowIndex = 1;
     }
-    console.log(playerNum);
 
-    if (playerNum === 2) {
-      sqArr[rowIndex][sqIndex] = 'O';
-        turnNum++;
-        // isWinningMove(rowIndex, sqIndex);
-    }
-    else if (playerNum === 1) {
-      sqArr[rowIndex][sqIndex] = 'X';
+    if(sqArr[rowIndex][sqIndex] === 'z' &&
+    (playerNum + turnNum) % 2 === 0) {
+      sqArr[rowIndex][sqIndex] = playerNum == 1 ? 'X' : 'O';
       turnNum++;
-      // isWinningMove(rowIndex, sqIndex);
+              // isWinningMove(rowIndex, sqIndex);
+
     }
+
     console.log("hey   " + sqArr);
     socket.emit('squareCl', sqArr);
     socket.emit('newTurn', turnNum);
