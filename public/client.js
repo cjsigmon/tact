@@ -17,7 +17,7 @@ let sqArr = ['Z', 'Z', 'Z', 'Z', 'Z', 'Z', 'Z', 'Z', 'Z'];
 
 socket.on('newPlayer', (p) => {
   playerNum = p;
-  players.textContent = playerNum;
+  players.textContent = "You are player " + playerNum;
 });
 
   function sqClick(sq) {
@@ -51,22 +51,6 @@ socket.on('newPlayer', (p) => {
     }
   })
 
-
-
-    // Listen for button clicks
-    button.addEventListener('click', () => {
-      socket.emit('toggleColor');
-    });
-
-    // Listen for initial color and updates
-    socket.on('initialColor', (color) => {
-      button.style.backgroundColor = color;
-    });
-
-    socket.on('updateColor', (color) => {
-      button.style.backgroundColor = color;
-    });
-
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       if (input.value) {
@@ -77,6 +61,6 @@ socket.on('newPlayer', (p) => {
     
     socket.on('chat message', function (msg) {
       const messageItem = document.createElement('li');
-      messageItem.textContent = msg;
+      messageItem.textContent = "[Player"+ playerNum + "] " + msg;
       messages.appendChild(messageItem);
     });
