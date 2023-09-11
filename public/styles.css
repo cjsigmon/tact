@@ -1,13 +1,90 @@
-/* button {
-    background-color: red;
-    color: white;
-    padding: 10px 20px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-  }
-  
-  button.blue {
-    background-color: blue;
-  }
-   */
+body {
+  text-align: center;
+  font-family: Arial, sans-serif;
+  color: azure;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.justify-content-center {
+  justify-content: center;
+}
+.justify-content-end {
+  justify-content: end;
+}
+.align-items-center {
+  align-items: center;
+}
+.align-items-end {
+  align-items: end;
+}
+.position-absolute {
+  position: absolute;
+}
+.position-relative {
+  position: relative;
+}
+.position-fixed {
+  position: fixed;
+}
+.bottom-0{
+  bottom: 0;
+}
+.right-0 {
+  right: 0;
+}
+
+.content {
+  height: 100vh;
+  background-color: #260101;
+}
+
+.sidebar {
+  width: 25vw;
+  margin: 2vw;
+  border: 3px solid #F25C05;
+  box-shadow: 0px 5px 25px 5px black;
+}
+
+.left-side {
+    margin-left: 4vw;
+}
+
+.middle {
+  width: 46vw;
+}
+
+
+#board {
+  display: flex;
+  flex-wrap: wrap;
+  width: 30vw;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  box-shadow: 0px 5px 25px 5px #F25C05;
+
+}
+
+.sq {
+    width: 10vw;
+    height: 10vw;
+    background-color: aliceblue;
+}
+
+#messages {
+  width: 15vw;
+  height: 75vh;
+}
+
+#msg-wrap {
+  padding: 16px;
+}
