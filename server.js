@@ -8,30 +8,45 @@ const io = socketIo(server);
 
 app.use(express.static(__dirname + '/public'));
 
-let playerCount = 0;
-let players = {};
+let buttonColor = 'red';
+let players = 0;
 
 io.on('connection', (socket) => {
-  if (playerCount < 2) {
-    playerCount++;
-    players[socket.id] = playerCount;
-    socket.emit('player', playerCount);
-
-    socket.on('toggleColor', () => {
-      const player = players[socket.id];
-      const color = player === 1 ? 'blue' : 'green';
-
-      io.emit('updateColor', { player, color });
-    });
-
-    socket.on('disconnect', () => {
-      delete players[socket.id];
-      playerCount--;
-    });
-  } else {
-    socket.emit('full');
-    socket.disconnect(true);
+  // Send the current button color to the new client
+  socket.emit('initialColor', buttonColor);
+  if(players < 2) {
+    socket.emit('newPlayer', ++players);
   }
+
+    // Listen for button clicks
+    socket.on('squareCl', (sq) => {
+      console.log(sq);
+  
+      // Broadcast the new color to all connected clients
+      // io.emit('updateColor', buttonColor);
+    });
+
+    socket.on('newTurn', (turnNum) => {
+      console.log(turnNum)
+  
+      io.emit('newTurn', turnNum)
+    });
+
+
+  // Listen for button clicks
+  socket.on('toggleColor', () => {
+    // Toggle the button color
+    buttonColor = buttonColor === 'red' ? 'blue' : 'red';
+
+    // Broadcast the new color to all connected clients
+    io.emit('updateColor', buttonColor);
+  });
+
+  socket.on('chat message', (msg) => {
+    io.emit('chat message', msg); // Broadcast the message to all connected clients
+  });
+
+
 });
 
 const port = process.env.PORT || 3000;
